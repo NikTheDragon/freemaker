@@ -30,10 +30,10 @@ public class SpringWebAppInitializer implements WebApplicationInitializer {
         servletContext.addListener(new ContextLoaderListener(appContext));
 
         // UTF8 Charactor Filter.
-        FilterRegistration.Dynamic fr = servletContext.addFilter("encodingFilter", CharacterEncodingFilter.class);
-
-        fr.setInitParameter("encoding", "UTF-8");
-        fr.setInitParameter("forceEncoding", "true");
-        fr.addMappingForUrlPatterns(null, true, "/*");
+//        FilterRegistration.Dynamic fr = servletContext.addFilter("encodingFilter", CharacterEncodingFilter.class);
+//
+//        fr.setInitParameter("encoding", "UTF-8");
+//        fr.setInitParameter("forceEncoding", "true");
+//        fr.addMappingForUrlPatterns(null, true, "/*");
     }
 }

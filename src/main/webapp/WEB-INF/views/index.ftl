@@ -1,7 +1,10 @@
+<#ftl encoding="UTF-8"/>
+<#import "/spring.ftl" as spring/>
+
 <html>
 <head>
     <title>Person List</title>
-
+    <#assign path = rc.getContextPath()>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -17,37 +20,57 @@
 
 </head>
 <body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a href="#" class="navbar-brand">MY SITE</a>
+<div class="uui-main-container">
+    <main>
+        <div class="signup-form">
+            <form action="${path}/index/" modelAttribute="user" method="post">
+                <h2>Register</h2>
+                <p class="hint-text">Please, fill all fields.</p>
+                <div class="form-group">
+                    <div class="row">
+                    <@spring.bind 'userForm.name'/>
+                        <div class="col-xs-6"><input type="text" class="form-control" name="name"
+                                                     placeholder="First Name" required="required">
+                        <#list spring.status.errorMessages as error>
+                        <span>${error}</span>
+                        </#list></div>
+                        <@spring.bind 'userForm.surname'/>
+                        <div class="col-xs-6"><input type="text" class="form-control" name="surname"
+                                                     placeholder="Last Name" required="required">
+                        <#list spring.status.errorMessages as error>
+                        <span>${error}</span>
+                        </#list></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <@spring.bind 'userForm.login'/>
+                    <input type="text" class="form-control" name="login" placeholder="Login" required="required">
+                    <#list spring.status.errorMessages as error>
+                        <span>${error}</span>
+                    </#list>
+                </div>
+                <div class="form-group">
+                    <@spring.bind 'userForm.password'/>
+                    <input type="password" class="form-control" name="password" placeholder="Password"
+                           required="required">
+                    <#list spring.status.errorMessages as error>
+                        <span>${error}</span>
+                    </#list>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password"
+                           required="required">
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-inline"><input type="checkbox" name="accept" required="required"> I accept
+                        the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
+                </div>
+            </form>
         </div>
-        <div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Menu one</a></li>
-                <li><a href="#">Menu two</a></li>
-                <li><a href="#">Menu three</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<p>simple text
-    <mark>marked text</mark>
-</p>
-
-<code>do-while</code>, <code>for-each</code>
-
-<pre>
-    for(int i=0; i<10; i++) {
-        System.out.println(i);
-    }
-</pre>
-
-<blockquote class="blockquote-reverse">
-    This was created by me!
-    <footer>Nik</footer>
-</blockquote>
-
+    </main>
+</div>
 </body>
 </html>

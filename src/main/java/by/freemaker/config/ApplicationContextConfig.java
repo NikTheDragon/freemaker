@@ -8,11 +8,8 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 @Configuration
-
 @ComponentScan("by.freemaker.*")
-
 public class ApplicationContextConfig {
-
     @Bean(name = "viewResolver")
     public ViewResolver getViewResolver() {
         FreeMarkerViewResolver viewResolver = new FreeMarkerViewResolver();
@@ -21,6 +18,8 @@ public class ApplicationContextConfig {
         viewResolver.setCache(true);
         viewResolver.setPrefix("");
         viewResolver.setSuffix(".ftl");
+        viewResolver.setContentType("text/html;charset=UTF-8");
+        viewResolver.setRequestContextAttribute("rc");
         return viewResolver;
     }
 
@@ -28,8 +27,9 @@ public class ApplicationContextConfig {
     public FreeMarkerConfigurer getFreemarkerConfig() {
         FreeMarkerConfigurer config = new FreeMarkerConfigurer();
 
-        // Folder containing FreeMarker templates.
         config.setTemplateLoaderPath("/WEB-INF/views/");
+        config.setDefaultEncoding("UTF-8");
+
         return config;
     }
 }
